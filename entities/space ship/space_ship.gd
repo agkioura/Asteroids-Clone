@@ -32,9 +32,9 @@ func moveShip(delta: float) -> void:
 	lookDirection = Vector2(cos(global_rotation - PI / 2), sin(global_rotation - PI / 2))
 	
 	if direction.y < 0:
-		velocity = lookDirection * speed
+		velocity = velocity.lerp(lookDirection * speed, delta)
 	elif direction.y >= 0:
-		velocity = Vector2.ZERO
+		velocity = velocity.lerp(Vector2.ZERO, delta)
 	move_and_slide()
 	
 func setDirection() -> void:

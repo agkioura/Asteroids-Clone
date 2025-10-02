@@ -4,7 +4,8 @@
 [ext_resource type="Script" uid="uid://c7g0xs5ewbq1x" path="res://entities/space ship/space_ship.gd" id="1_uvhui"]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-collision_mask = 4
+collision_layer = 0
+collision_mask = 0
 script = ExtResource("1_uvhui")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
