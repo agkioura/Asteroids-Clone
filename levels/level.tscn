@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctnodfs2bfoq4"]
+
+[ext_resource type="PackedScene" uid="uid://ca0nwy12u8gi5" path="res://entities/space ship/space_ship.tscn" id="1_80vhd"]
+
+[node name="Level" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_80vhd")]
+position = Vector2(242, 128)
+rotation = 0.888373
