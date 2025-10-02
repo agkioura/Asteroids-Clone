@@ -12,6 +12,8 @@ var positions: Array = []
 var ship: SpaceShip
 
 func _ready() -> void:
+	Global.gameOver.connect(_on_game_over)
+	
 	area_2d.area_entered.connect(_on_area_connect)
 	
 	ship = load("res://entities/space ship/space_ship.tscn").instantiate()
@@ -48,3 +50,6 @@ func spawnAstroid() -> void:
 func _on_area_connect(area: Area2D) -> void:
 	print("despawn")
 	area.get_parent().queue_free()
+	
+func _on_game_over() -> void:
+	queue_free()

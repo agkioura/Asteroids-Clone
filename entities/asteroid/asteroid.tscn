@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dy1jue2stgx80"]
+[gd_scene load_steps=13 format=3 uid="uid://dy1jue2stgx80"]
 
 [ext_resource type="Script" uid="uid://ci4lwh05o85e" path="res://entities/asteroid/asteroid.gd" id="1_4qh0a"]
 [ext_resource type="Texture2D" uid="uid://bp8g34t7qjkip" path="res://assets/asteroids.png" id="2_4qh0a"]
+[ext_resource type="Texture2D" uid="uid://baafodhm4six1" path="res://assets/asteroid_particles.png" id="3_ecv56"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4qh0a"]
-radius = 15.0333
+radius = 16.0
 
 [sub_resource type="Animation" id="Animation_ecv56"]
 resource_name = "big_asteroid"
@@ -31,7 +32,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [15.0]
+"values": [16.0]
 }
 
 [sub_resource type="Animation" id="Animation_useci"]
@@ -97,6 +98,38 @@ _data = {
 &"small_asteroid": SubResource("Animation_4qh0a")
 }
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_useci"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 6
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_ecv56"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.496454, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_useci"]
+curve = SubResource("Curve_ecv56")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_go57s"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 7.39
+angle_min = -94.5
+angle_max = 130.5
+spread = 180.0
+initial_velocity_min = 84.38
+initial_velocity_max = 84.38
+angular_velocity_min = 292.5
+angular_velocity_max = 292.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -33.75
+linear_accel_max = -31.87
+damping_min = 1.875
+damping_max = 1.875
+alpha_curve = SubResource("CurveTexture_useci")
+anim_offset_max = 1.0
+
 [node name="Asteroid" type="Node2D"]
 script = ExtResource("1_4qh0a")
 
@@ -115,3 +148,12 @@ shape = SubResource("CircleShape2D_4qh0a")
 libraries = {
 &"": SubResource("AnimationLibrary_go57s")
 }
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_useci")
+emitting = false
+amount = 15
+texture = ExtResource("3_ecv56")
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_go57s")
