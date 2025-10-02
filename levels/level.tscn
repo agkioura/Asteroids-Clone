@@ -1,15 +1,99 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctnodfs2bfoq4"]
+[gd_scene load_steps=6 format=3 uid="uid://ctnodfs2bfoq4"]
 
 [ext_resource type="Script" uid="uid://cahkyh6t7vau0" path="res://levels/level.gd" id="1_hjsbj"]
-[ext_resource type="PackedScene" uid="uid://dy1jue2stgx80" path="res://entities/asteroid/asteroid.tscn" id="2_hjsbj"]
+[ext_resource type="Texture2D" uid="uid://dmysomxi84s32" path="res://assets/background.png" id="2_hjsbj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_80vhd"]
+size = Vector2(11, 270)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hjsbj"]
+size = Vector2(480, 8.125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwqvt"]
+size = Vector2(480, 10)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_hjsbj")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(240, 135)
+texture = ExtResource("2_hjsbj")
+
 [node name="Entities" type="Node2D" parent="."]
 
-[node name="Asteroid" parent="Entities" instance=ExtResource("2_hjsbj")]
-position = Vector2(356, 145)
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 6
 
-[node name="Asteroid2" parent="Entities" instance=ExtResource("2_hjsbj")]
-position = Vector2(321, 73)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(-49, -71, -49, 324, 528, 324, 528, -52, -47, -52, -47, -70, 554, -70, 555, 359, -75, 359, -75, -71)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(232, -24)
+
+[node name="Marker2D2" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(64, -24)
+
+[node name="Marker2D3" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(416, -24)
+
+[node name="Marker2D4" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-24, 32)
+
+[node name="Marker2D5" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-24, 224)
+
+[node name="Marker2D6" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(-24, 128)
+
+[node name="Marker2D7" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(64, 296)
+
+[node name="Marker2D8" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(232, 296)
+
+[node name="Marker2D9" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(416, 296)
+
+[node name="Marker2D10" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(504, 32)
+
+[node name="Marker2D11" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(504, 128)
+
+[node name="Marker2D12" type="Marker2D" parent="SpawnPoints"]
+position = Vector2(504, 224)
+
+[node name="SpawnTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="west" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="west"]
+position = Vector2(-5.5, 135)
+shape = SubResource("RectangleShape2D_80vhd")
+
+[node name="east" type="StaticBody2D" parent="."]
+position = Vector2(491, 0)
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="east"]
+position = Vector2(-6, 136)
+shape = SubResource("RectangleShape2D_80vhd")
+
+[node name="north" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="north"]
+position = Vector2(240, -4.0625)
+shape = SubResource("RectangleShape2D_hjsbj")
+
+[node name="south" type="StaticBody2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="south"]
+position = Vector2(240, 275)
+shape = SubResource("RectangleShape2D_cwqvt")

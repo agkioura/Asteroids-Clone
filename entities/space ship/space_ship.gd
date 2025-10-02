@@ -1,7 +1,7 @@
 class_name SpaceShip extends CharacterBody2D
 
 @export var speed: int = 100
-@export var turnSpeed: int = 3
+@export var turnSpeed: float = 3.0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var marker_2d: Marker2D = $Marker2D

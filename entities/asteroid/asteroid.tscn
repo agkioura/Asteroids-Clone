@@ -1,16 +1,108 @@
-[gd_scene load_steps=4 format=3 uid="uid://dy1jue2stgx80"]
+[gd_scene load_steps=8 format=3 uid="uid://dy1jue2stgx80"]
 
 [ext_resource type="Script" uid="uid://ci4lwh05o85e" path="res://entities/asteroid/asteroid.gd" id="1_4qh0a"]
-[ext_resource type="Texture2D" uid="uid://bof0ldd4i743y" path="res://assets/asteroid.png" id="1_20vrb"]
+[ext_resource type="Texture2D" uid="uid://bp8g34t7qjkip" path="res://assets/asteroids.png" id="2_4qh0a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4qh0a"]
-radius = 15.0
+radius = 15.0333
+
+[sub_resource type="Animation" id="Animation_ecv56"]
+resource_name = "big_asteroid"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("detection/CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [15.0]
+}
+
+[sub_resource type="Animation" id="Animation_useci"]
+resource_name = "medium_asteroid"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("detection/CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.001),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [9.0]
+}
+
+[sub_resource type="Animation" id="Animation_4qh0a"]
+resource_name = "small_asteroid"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("detection/CollisionShape2D:shape:radius")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [6.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_go57s"]
+_data = {
+&"big_asteroid": SubResource("Animation_ecv56"),
+&"medium_asteroid": SubResource("Animation_useci"),
+&"small_asteroid": SubResource("Animation_4qh0a")
+}
 
 [node name="Asteroid" type="Node2D"]
 script = ExtResource("1_4qh0a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_20vrb")
+texture = ExtResource("2_4qh0a")
+hframes = 3
 
 [node name="detection" type="Area2D" parent="."]
 collision_layer = 4
@@ -18,3 +110,8 @@ collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="detection"]
 shape = SubResource("CircleShape2D_4qh0a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_go57s")
+}
