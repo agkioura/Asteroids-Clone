@@ -1,11 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca0nwy12u8gi5"]
+[gd_scene load_steps=3 format=3 uid="uid://ca0nwy12u8gi5"]
 
 [ext_resource type="Texture2D" uid="uid://b5f8rpefqmabr" path="res://assets/space-ship.png" id="1_bk2x3"]
+[ext_resource type="Script" uid="uid://c7g0xs5ewbq1x" path="res://entities/space ship/space_ship.gd" id="1_uvhui"]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 4
+script = ExtResource("1_uvhui")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_bk2x3")
 
 [node name="Collision" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(0, -8, -7, 5, -7, 8, -6, 8, -3, 5, -2, 5, -1, 4, 1, 4, 2, 5, 3, 5, 6, 8, 7, 8, 7, 5)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="ShootCooldown" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
