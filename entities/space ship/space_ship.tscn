@@ -1,10 +1,47 @@
-[gd_scene load_steps=4 format=3 uid="uid://ca0nwy12u8gi5"]
+[gd_scene load_steps=7 format=3 uid="uid://ca0nwy12u8gi5"]
 
 [ext_resource type="Texture2D" uid="uid://b5f8rpefqmabr" path="res://assets/space-ship.png" id="1_bk2x3"]
 [ext_resource type="Script" uid="uid://c7g0xs5ewbq1x" path="res://entities/space ship/space_ship.gd" id="1_uvhui"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvhui"]
 radius = 11.0
+
+[sub_resource type="Animation" id="Animation_uvhui"]
+resource_name = "damaged"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_ule3m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5b78f"]
+_data = {
+&"RESET": SubResource("Animation_ule3m"),
+&"damaged": SubResource("Animation_uvhui")
+}
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_mask = 16
@@ -29,3 +66,12 @@ shape = SubResource("CircleShape2D_uvhui")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(0, -8, -5, 4, -6, 7, -2, 3, 2, 3, 6, 7)
+
+[node name="iFrames" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_5b78f")
+}

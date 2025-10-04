@@ -1,19 +1,26 @@
 class_name SpaceShip extends CharacterBody2D
 
+signal damaged
+
 @export var speed: int = 100
 @export var turnSpeed: float = 3.0
 
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var marker_2d: Marker2D = $Marker2D
 @onready var shoot_cooldown: Timer = $ShootCooldown
+@onready var i_frames: Timer = $iFrames
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var direction: Vector2 = Vector2.ZERO
 var lookDirection: Vector2 = Vector2(0, -1)
 
+var maxHealth: int = 4
+var currentHealth: int = 4
+
 func _ready() -> void:
 	pass
 	
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	moveShip(delta)
 	
 func _input(event: InputEvent) -> void:
@@ -45,3 +52,20 @@ func shoot() -> void:
 	bullet.global_position = marker_2d.global_position
 	bullet.direction = lookDirection
 	get_parent().add_child.call_deferred(bullet)
+	
+#func animateDamage() -> void:
+	#if tween:
+		#tween.kill()
+	#tween = get_tree().create_tween()
+	#tween.tween_property(sprite, "modulate:a", 0, 0.5).set_trans(Tween.TRANS_SINE)
+	
+func damage() -> void:
+	if i_frames.is_stopped():
+		if currentHealth - 1 > 0:
+			currentHealth -= 1
+			damaged.emit()
+			i_frames.start(0.5)
+			#animateDamage()
+			animation_player.play("damaged")
+		else:
+			Global.gameOver.emit()

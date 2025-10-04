@@ -16,39 +16,43 @@ func _ready() -> void:
 	
 	area_2d.area_entered.connect(_on_area_connect)
 	
-	ship = load("res://entities/space ship/space_ship.tscn").instantiate()
+	ship = preload("res://entities/space ship/space_ship.tscn").instantiate()
 	ship.global_position = Vector2(240, 135)
+	
+	Global.player = ship
+	
 	entities.add_child(ship)
 	
 	for spawnPoint in spawn_points.get_children():
 		positions.append(spawnPoint.global_position)
 		
+	Global.game.loadGui()
+		
 func _process(_delta: float) -> void:
 	if spawn_timer.is_stopped():
-		spawnAstroid()
+		spawnAstroids()
+		spawn_timer.start(2)
 
-func spawnAstroid() -> void:
+func spawnAstroids() -> void:
 	for i in range(rng.randi_range(3,4)):
 		var index = rng.randi_range(0, positions.size() - 1)
-		var asteroid = load("res://entities/asteroid/asteroid.tscn").instantiate()
+		var asteroid = preload("res://entities/asteroid/asteroid.tscn").instantiate()
 		asteroid.global_position = positions[index]
 		var randomOffset = Vector2(rng.randi_range(0, 200), rng.randi_range(0, 200))
 		asteroid.direction = asteroid.global_position.direction_to(ship.global_position + randomOffset)
-		entities.add_child(asteroid)
 		
 		var type = rng.randi_range(0, 2)
 		match type:
 			0:
-				asteroid.setSize("big")
+				asteroid.size = "big"
 			1:
-				asteroid.setSize("medium")
+				asteroid.size = "medium"
 			2:
-				asteroid.setSize("small")
+				asteroid.size = "small"
 		
-	spawn_timer.start(2)
+		entities.add_child.call_deferred(asteroid)
 
 func _on_area_connect(area: Area2D) -> void:
-	print("despawn")
 	area.get_parent().queue_free()
 	
 func _on_game_over() -> void:

@@ -1,6 +1,7 @@
 extends Node
 
 var game: Game
+var player: SpaceShip
 
 signal gameOver
 
