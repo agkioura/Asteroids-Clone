@@ -68,4 +68,5 @@ func damage() -> void:
 			#animateDamage()
 			animation_player.play("damaged")
 		else:
-			Global.gameOver.emit()
+			pass
+			#Global.gameOver.emit()

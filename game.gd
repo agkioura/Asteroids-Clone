@@ -14,7 +14,7 @@ func loadLevel() -> void:
 	add_child(currentScene)
 	
 func loadGui() -> void:
-	currentGui = load("res://ui/health_bar.tscn").instantiate()
+	currentGui = load("res://ui/player_ui.tscn").instantiate()
 	add_child(currentGui)
 
 func _on_game_over() -> void:
