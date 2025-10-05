@@ -6,9 +6,6 @@ var currentScene = null
 
 func _ready() -> void:
 	Global.game = self
-	
-	AudioServer.set_bus_volume_db(1, linear_to_db(Global.musicSlider))
-	AudioServer.set_bus_volume_db(2, linear_to_db(Global.sfxSlider))
 
 	loadGui("res://menus/main menu/mainMenu.tscn")
 	

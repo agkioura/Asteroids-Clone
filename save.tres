@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="GameState" load_steps=2 format=3]
-
-[ext_resource type="Script" path="res://gameState.gd" id="1_dvlvu"]
-
-[resource]
-script = ExtResource("1_dvlvu")
-bestTime = 27.3201
-sfxSliderValue = 0.0
-musicSliderValue = 0.0

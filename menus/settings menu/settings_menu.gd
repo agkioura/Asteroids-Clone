@@ -14,8 +14,8 @@ func _ready() -> void:
 	sfx_slider.value_changed.connect(_on_sfx_value_changed)
 	music_slider.value_changed.connect(_on_music_value_changed)
 	
-	sfx_slider.value = Global.sfxSlider if Global.sfxSlider else db_to_linear(AudioServer.get_bus_volume_db(2))
-	music_slider.value = Global.musicSlider if Global.musicSlider else db_to_linear(AudioServer.get_bus_volume_db(1))
+	sfx_slider.value = db_to_linear(AudioServer.get_bus_volume_db(2))
+	music_slider.value = db_to_linear(AudioServer.get_bus_volume_db(1))
 	
 	match Global.settings.windowMode:
 		DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
