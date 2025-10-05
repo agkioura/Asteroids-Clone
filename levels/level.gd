@@ -10,7 +10,6 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var positions: Array = []
 
 var ship: SpaceShip
-var time: float
 
 func _ready() -> void:
 	Global.gameOver.connect(_on_game_over)
@@ -27,14 +26,12 @@ func _ready() -> void:
 	for spawnPoint in spawn_points.get_children():
 		positions.append(spawnPoint.global_position)
 		
-	Global.game.loadGui()
+	Global.game.loadGui("res://ui/player_ui.tscn")
 		
 func _process(delta: float) -> void:
-	time += delta
 	if spawn_timer.is_stopped():
 		spawnAstroids()
 		spawn_timer.start(2)
-	print(time)
 
 func spawnAstroids() -> void:
 	for i in range(rng.randi_range(3,4)):

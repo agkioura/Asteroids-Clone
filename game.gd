@@ -13,8 +13,8 @@ func loadLevel() -> void:
 	currentScene = load("res://levels/level.tscn").instantiate()
 	add_child(currentScene)
 	
-func loadGui() -> void:
-	currentGui = load("res://ui/player_ui.tscn").instantiate()
+func loadGui(gui: String) -> void:
+	currentGui = load(gui).instantiate()
 	add_child(currentGui)
 
 func _on_game_over() -> void:
