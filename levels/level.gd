@@ -28,6 +28,10 @@ func _ready() -> void:
 		
 	Global.game.loadGui("res://ui/player_ui.tscn")
 		
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel") and !Global.paused:
+		Global.game.loadGui("res://menus/pause menu/pause_menu.tscn")
+
 func _process(delta: float) -> void:
 	if spawn_timer.is_stopped():
 		spawnAstroids()
@@ -56,4 +60,5 @@ func _on_area_connect(area: Area2D) -> void:
 	area.get_parent().queue_free()
 	
 func _on_game_over() -> void:
+	
 	queue_free()

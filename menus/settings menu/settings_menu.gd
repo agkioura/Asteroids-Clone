@@ -11,9 +11,12 @@ func _ready() -> void:
 			windownMode.select(0)
 		DisplayServer.WINDOW_MODE_WINDOWED:
 			windownMode.select(1)
+			
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_cancel"):
+		queue_free()
 
 func _on_back_pressed() -> void:
-	Global.game.loadGui("res://menus/main menu/mainMenu.tscn")
 	queue_free()
 
 func _on_window_changed(index: int) -> void:

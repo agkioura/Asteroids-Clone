@@ -9,6 +9,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bc0fl"]
 
 [node name="settingsMenu" type="CanvasLayer"]
+process_mode = 3
 script = ExtResource("1_bc0fl")
 
 [node name="TextureRect" type="TextureRect" parent="."]

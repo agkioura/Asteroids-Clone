@@ -1,0 +1,69 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2o3jnrsdjp37"]
+
+[ext_resource type="Script" uid="uid://dhkqsa8ykiasf" path="res://menus/pause menu/pause_menu.gd" id="1_0ceex"]
+[ext_resource type="Texture2D" uid="uid://cp6po156talxb" path="res://assets/pause menu.png" id="1_rupc2"]
+[ext_resource type="FontFile" uid="uid://bcct3elykmji6" path="res://assets/Minecraft.ttf" id="2_povan"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_povan"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ceex"]
+
+[node name="pauseMenu" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_0ceex")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_rupc2")
+stretch_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_fonts/font = ExtResource("2_povan")
+text = "Pause Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="settingsButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_povan")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_povan")
+text = "Settings"
+flat = true
+
+[node name="returnToTitleButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_povan")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ceex")
+text = "Return to Title"
+flat = true

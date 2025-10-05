@@ -15,7 +15,6 @@ func _on_start_pressed() -> void:
 	
 func _on_settings_pressed() -> void:
 	Global.game.loadGui("res://menus/settings menu/settings_menu.tscn")
-	queue_free()
 	
 func _on_quit_pressed() -> void:
 	get_tree().quit()

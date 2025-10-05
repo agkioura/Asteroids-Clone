@@ -2,6 +2,7 @@ extends Node
 
 var game: Game
 var player: SpaceShip
+var paused: bool = false
 
 var settings = {
 	"windowMode": DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN

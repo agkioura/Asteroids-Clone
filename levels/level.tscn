@@ -13,6 +13,7 @@ size = Vector2(480, 8.125)
 size = Vector2(480, 10)
 
 [node name="Level" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_hjsbj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
