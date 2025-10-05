@@ -4,4 +4,6 @@
 
 [resource]
 script = ExtResource("1_dvlvu")
-bestTime = 32.9682
+bestTime = 27.3201
+sfxSliderValue = 0.0
+musicSliderValue = 0.0

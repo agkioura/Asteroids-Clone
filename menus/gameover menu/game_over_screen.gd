@@ -14,7 +14,8 @@ func _ready() -> void:
 		Global.bestTime = Global.time
 	timeLabel.text = "Time survived: " + Global.getTimeFormat(Global.time)
 	bestTimeLaber.text = "Best time: " + Global.getTimeFormat(Global.bestTime)
-	Global.gameState.saveGame(Global.bestTime)
+	Global.saveData.bestTime = Global.bestTime
+	Global.gameState.saveGame(Global.saveData)
 	
 func _on_return_pressed() -> void:
 	if !animation_player.is_playing():

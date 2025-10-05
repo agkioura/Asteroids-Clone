@@ -7,9 +7,20 @@ var paused: bool = false
 var inSequence: bool = false
 var time: float
 var bestTime: float
+var sfxSlider: float
+var musicSlider: float
 
 var settings = {
 	"windowMode": DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN
+}
+
+var saveData = {
+	"settings": {
+		"windowMode": DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN,
+		"sfxValue": sfxSlider,
+		"musicValue": musicSlider
+	},
+	"bestTime": bestTime
 }
 
 signal gameOver
@@ -20,6 +31,8 @@ func _ready() -> void:
 	var state = gameState.loadGame()
 	if state:
 		bestTime = state.bestTime
+		sfxSlider = state.sfxSliderValue
+		musicSlider = state.musicSliderValue
 	DisplayServer.window_set_mode(settings.windowMode)
 	Input.set_custom_mouse_cursor(arrow)
 	

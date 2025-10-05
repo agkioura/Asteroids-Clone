@@ -66,3 +66,4 @@ process_material = SubResource("ParticleProcessMaterial_go57s")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_useci")
+bus = &"SFX"
