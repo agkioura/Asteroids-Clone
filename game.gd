@@ -5,7 +5,6 @@ var currentScene = null
 
 func _ready() -> void:
 	Global.game = self
-	Global.gameOver.connect(_on_game_over)
 	loadGui("res://menus/main menu/mainMenu.tscn")
 	
 func loadLevel() -> void:
@@ -17,7 +16,9 @@ func loadGui(guiPath: String) -> void:
 	if newGui:
 		gui.add_child.call_deferred(newGui)
 
-func _on_game_over() -> void:
+func reset() -> void:
 	for ui in gui.get_children():
-		gui.remove_child.call_deferred(ui)
+		ui.queue_free()
+	Global.inSequence = false
+	currentScene.queue_free()
 	loadGui("res://menus/main menu/mainMenu.tscn")

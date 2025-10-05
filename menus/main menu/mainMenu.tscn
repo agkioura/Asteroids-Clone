@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqppw4bct2ifb"]
+[gd_scene load_steps=10 format=3 uid="uid://dqppw4bct2ifb"]
 
 [ext_resource type="Script" uid="uid://b832gnp2v37f0" path="res://menus/main menu/main_menu.gd" id="1_fygu0"]
 [ext_resource type="Texture2D" uid="uid://dmysomxi84s32" path="res://assets/background.png" id="2_mrrxq"]
@@ -10,22 +10,90 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vixs4"]
 
+[sub_resource type="Animation" id="Animation_wwbbu"]
+resource_name = "pop-in"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vixs4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nyl5g"]
+_data = {
+&"RESET": SubResource("Animation_vixs4"),
+&"pop-in": SubResource("Animation_wwbbu")
+}
+
 [node name="mainMenu" type="CanvasLayer"]
 script = ExtResource("1_fygu0")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
 offset_right = 480.0
 offset_bottom = 270.0
 texture = ExtResource("2_mrrxq")
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -91.0
+offset_left = 77.5
 offset_top = 29.0
-offset_right = 92.0
-offset_bottom = 45.0
+offset_right = 363.5
+offset_bottom = 55.0
 grow_horizontal = 2
 size_flags_horizontal = 8
 size_flags_vertical = 1
@@ -34,20 +102,22 @@ theme_override_font_sizes/font_size = 25
 text = "ASTROID DESTROYER"
 horizontal_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = -5.0
-offset_right = 45.0
-offset_bottom = 75.0
+offset_left = 175.0
+offset_top = 110.0
+offset_right = 265.0
+offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="startButton" type="Button" parent="VBoxContainer"]
+[node name="startButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -56,17 +126,22 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_wwbbu")
 text = "START"
 flat = true
 
-[node name="settingsButton" type="Button" parent="VBoxContainer"]
+[node name="settingsButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_wwbbu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_nyl5g")
 text = "SETTINGS"
 flat = true
 
-[node name="quitButton" type="Button" parent="VBoxContainer"]
+[node name="quitButton" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 focus_mode = 0
 theme_override_fonts/font = ExtResource("3_wwbbu")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vixs4")
 text = "QUIT"
 flat = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_nyl5g")
+}

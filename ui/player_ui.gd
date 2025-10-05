@@ -14,11 +14,13 @@ func _ready() -> void:
 	initHealth()
 	
 func _process(delta: float) -> void:
-	time += delta
-	timer.text = getTimeFormat(time)
+	if !Global.inSequence:
+		time += delta
+		timer.text = getTimeFormat(time)
+		Global.time = timer.text
 	
 func initHealth() -> void:
-	for i in range(healthPoints):
+	for i in range(Global.player.currentHealth):
 		var hp = TextureRect.new()
 		hp.texture = load("res://assets/health_filler.png")
 		health.add_child(hp)

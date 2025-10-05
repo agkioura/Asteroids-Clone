@@ -3,6 +3,9 @@ extends Node
 var game: Game
 var player: SpaceShip
 var paused: bool = false
+var inSequence: bool = false
+var time: String
+var bestTime: String
 
 var settings = {
 	"windowMode": DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN

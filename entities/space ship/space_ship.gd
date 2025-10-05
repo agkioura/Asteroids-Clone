@@ -10,21 +10,23 @@ signal damaged
 @onready var shoot_cooldown: Timer = $ShootCooldown
 @onready var i_frames: Timer = $iFrames
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
 
 var direction: Vector2 = Vector2.ZERO
 var lookDirection: Vector2 = Vector2(0, -1)
 
 var maxHealth: int = 4
-var currentHealth: int = 4
+var currentHealth: int = 1
 
 func _ready() -> void:
 	pass
 	
 func _physics_process(delta: float) -> void:
-	moveShip(delta)
+	if !Global.inSequence:
+		moveShip(delta)
 	
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("shoot") and shoot_cooldown.is_stopped():
+	if event.is_action_pressed("shoot") and shoot_cooldown.is_stopped() and !Global.inSequence:
 		shoot()
 		shoot_cooldown.start(0.5)
 	
@@ -53,19 +55,17 @@ func shoot() -> void:
 	bullet.direction = lookDirection
 	get_parent().add_child.call_deferred(bullet)
 	
-#func animateDamage() -> void:
-	#if tween:
-		#tween.kill()
-	#tween = get_tree().create_tween()
-	#tween.tween_property(sprite, "modulate:a", 0, 0.5).set_trans(Tween.TRANS_SINE)
-	
+
 func damage() -> void:
 	if i_frames.is_stopped():
 		if currentHealth - 1 > 0:
 			currentHealth -= 1
 			damaged.emit()
 			i_frames.start(0.5)
-			#animateDamage()
 			animation_player.play("damaged")
 		else:
 			Global.gameOver.emit()
+			
+func explode():
+	sprite.visible = false
+	gpu_particles_2d.emitting = true

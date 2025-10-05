@@ -19,5 +19,5 @@ func _on_settings_pressed() -> void:
 	Global.game.loadGui("res://menus/settings menu/settings_menu.tscn")
 	
 func _on_return_pressed() -> void:
-	Global.gameOver.emit()
+	Global.game.reset()
 	get_tree().paused = false
