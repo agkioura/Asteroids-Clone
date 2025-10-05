@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cba1dolklof81"
-path="res://.godot/imported/health_filler.png-fddb42294f84a3edd2920c9c55909f7c.ctex"
+uid="uid://b5f8rpefqmabr"
+path="res://.godot/imported/space-ship.png-f7912f1b11bb0bb08fc0610c227ba032.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/health_filler.png"
-dest_files=["res://.godot/imported/health_filler.png-fddb42294f84a3edd2920c9c55909f7c.ctex"]
+source_file="res://assets/sprites/space-ship.png"
+dest_files=["res://.godot/imported/space-ship.png-f7912f1b11bb0bb08fc0610c227ba032.ctex"]
 
 [params]
 

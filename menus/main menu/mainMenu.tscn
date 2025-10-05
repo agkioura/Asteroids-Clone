@@ -1,14 +1,42 @@
-[gd_scene load_steps=10 format=3 uid="uid://dqppw4bct2ifb"]
+[gd_scene load_steps=11 format=3 uid="uid://dqppw4bct2ifb"]
 
 [ext_resource type="Script" uid="uid://b832gnp2v37f0" path="res://menus/main menu/main_menu.gd" id="1_fygu0"]
-[ext_resource type="Texture2D" uid="uid://dmysomxi84s32" path="res://assets/background.png" id="2_mrrxq"]
-[ext_resource type="FontFile" uid="uid://bcct3elykmji6" path="res://assets/Minecraft.ttf" id="3_wwbbu"]
+[ext_resource type="Texture2D" uid="uid://dmysomxi84s32" path="res://assets/sprites/background.png" id="2_mrrxq"]
+[ext_resource type="FontFile" uid="uid://bcct3elykmji6" path="res://assets/fonts/Minecraft.ttf" id="3_wwbbu"]
+[ext_resource type="AudioStream" uid="uid://41285ycs8l4t" path="res://assets/sounds/retro-select-236670.mp3" id="4_vixs4"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wwbbu"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nyl5g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vixs4"]
+
+[sub_resource type="Animation" id="Animation_vixs4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Label:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/VBoxContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_wwbbu"]
 resource_name = "pop-in"
@@ -38,33 +66,6 @@ tracks/1/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_vixs4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Control/Label:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Control/VBoxContainer:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nyl5g"]
 _data = {
 &"RESET": SubResource("Animation_vixs4"),
@@ -81,6 +82,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TextureRect" type="TextureRect" parent="Control"]
+layout_mode = 0
 offset_right = 480.0
 offset_bottom = 270.0
 texture = ExtResource("2_mrrxq")
@@ -145,3 +147,6 @@ flat = true
 libraries = {
 &"": SubResource("AnimationLibrary_nyl5g")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_vixs4")

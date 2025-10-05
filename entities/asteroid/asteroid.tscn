@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dy1jue2stgx80"]
+[gd_scene load_steps=10 format=3 uid="uid://dy1jue2stgx80"]
 
 [ext_resource type="Script" uid="uid://ci4lwh05o85e" path="res://entities/asteroid/asteroid.gd" id="1_4qh0a"]
-[ext_resource type="Texture2D" uid="uid://bp8g34t7qjkip" path="res://assets/asteroids.png" id="2_4qh0a"]
-[ext_resource type="Texture2D" uid="uid://baafodhm4six1" path="res://assets/asteroid_particles.png" id="3_ecv56"]
+[ext_resource type="Texture2D" uid="uid://bp8g34t7qjkip" path="res://assets/sprites/asteroids.png" id="2_4qh0a"]
+[ext_resource type="Texture2D" uid="uid://baafodhm4six1" path="res://assets/sprites/asteroid_particles.png" id="3_ecv56"]
+[ext_resource type="AudioStream" uid="uid://nw80psnpbk7k" path="res://assets/sounds/retro-explode-1-236678.mp3" id="4_useci"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4qh0a"]
 radius = 6.0
@@ -62,3 +63,6 @@ texture = ExtResource("3_ecv56")
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_go57s")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_useci")

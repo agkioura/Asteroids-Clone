@@ -32,7 +32,7 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel") and !Global.paused and !Global.inSequence:
 		Global.game.loadGui("res://menus/pause menu/pause_menu.tscn")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if spawn_timer.is_stopped() and !Global.inSequence:
 		spawnAstroids()
 		spawn_timer.start(2)

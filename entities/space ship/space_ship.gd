@@ -11,12 +11,13 @@ signal damaged
 @onready var i_frames: Timer = $iFrames
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var gpu_particles_2d: GPUParticles2D = $GPUParticles2D
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var direction: Vector2 = Vector2.ZERO
 var lookDirection: Vector2 = Vector2(0, -1)
 
 var maxHealth: int = 4
-var currentHealth: int = 1
+var currentHealth: int = 4
 
 func _ready() -> void:
 	pass
@@ -57,10 +58,11 @@ func shoot() -> void:
 	
 
 func damage() -> void:
-	if i_frames.is_stopped():
+	if i_frames.is_stopped() and !Global.inSequence:
+		audio_stream_player_2d.play()
+		damaged.emit()
 		if currentHealth - 1 > 0:
 			currentHealth -= 1
-			damaged.emit()
 			i_frames.start(0.5)
 			animation_player.play("damaged")
 		else:

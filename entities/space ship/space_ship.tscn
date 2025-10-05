@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ca0nwy12u8gi5"]
+[gd_scene load_steps=13 format=3 uid="uid://ca0nwy12u8gi5"]
 
-[ext_resource type="Texture2D" uid="uid://b5f8rpefqmabr" path="res://assets/space-ship.png" id="1_bk2x3"]
+[ext_resource type="Texture2D" uid="uid://b5f8rpefqmabr" path="res://assets/sprites/space-ship.png" id="1_bk2x3"]
 [ext_resource type="Script" uid="uid://c7g0xs5ewbq1x" path="res://entities/space ship/space_ship.gd" id="1_uvhui"]
-[ext_resource type="Texture2D" uid="uid://c7q0jic1n05sw" path="res://assets/spaceship_particles.png" id="3_ule3m"]
+[ext_resource type="Texture2D" uid="uid://c7q0jic1n05sw" path="res://assets/sprites/spaceship_particles.png" id="3_ule3m"]
+[ext_resource type="AudioStream" uid="uid://bvujvt43wda2s" path="res://assets/sounds/retro-explode-2-236688.mp3" id="4_5b78f"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvhui"]
 radius = 11.0
@@ -117,3 +118,6 @@ texture = ExtResource("3_ule3m")
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_saws0")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_5b78f")

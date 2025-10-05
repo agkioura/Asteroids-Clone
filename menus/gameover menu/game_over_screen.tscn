@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://btu0r57cjjf45"]
+[gd_scene load_steps=10 format=3 uid="uid://btu0r57cjjf45"]
 
-[ext_resource type="Texture2D" uid="uid://cp6po156talxb" path="res://assets/pause menu.png" id="1_67p6v"]
+[ext_resource type="Texture2D" uid="uid://cp6po156talxb" path="res://assets/sprites/pause menu.png" id="1_67p6v"]
 [ext_resource type="Script" uid="uid://dnpnalo6nxy31" path="res://menus/gameover menu/game_over_screen.gd" id="1_p8yhe"]
-[ext_resource type="FontFile" uid="uid://bcct3elykmji6" path="res://assets/Minecraft.ttf" id="3_3xsbi"]
+[ext_resource type="FontFile" uid="uid://bcct3elykmji6" path="res://assets/fonts/Minecraft.ttf" id="3_3xsbi"]
+[ext_resource type="AudioStream" uid="uid://41285ycs8l4t" path="res://assets/sounds/retro-select-236670.mp3" id="4_3xsbi"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_p8yhe"]
 font = ExtResource("3_3xsbi")
@@ -125,3 +126,6 @@ flat = true
 libraries = {
 &"": SubResource("AnimationLibrary_3xsbi")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_3xsbi")
